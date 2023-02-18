@@ -1,0 +1,16 @@
+{
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeActionsOnSave": {
+    "addMissingImports": true,
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.scrollBeyondLastColumn": 2,
+  "eslint.alwaysShowStatus": true,
+  "files.autoSave": "onFocusChange",
+  "typescript.validate.enable": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "cSpell.words": ["Fireship's"]
+}
