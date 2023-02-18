@@ -2,6 +2,14 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator jsonSchema {
+  provider = "prisma-json-schema-generator"
+}
+
+generator zod {
+  provider = "prisma-zod-generator"
+}
+
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
@@ -22,14 +30,14 @@ model Quiz {
   admin     User           @relation(fields: [adminId], references: [id])
   adminId   String         @db.ObjectId
   questions QuizQuestion[]
-  quizTitle String         @unique
+  quizTitle String?        @unique
 }
 
 model User {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  email    String @unique
-  mobile   String @unique
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  email    String  @unique
+  mobile   String? @unique
   password String
-  username String @unique
+  username String  @unique
   quizzes  Quiz[]
 }
