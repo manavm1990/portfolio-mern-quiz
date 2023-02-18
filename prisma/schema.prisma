@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type QuizQuestion {
+  options  QuizQuestionOption[]
+  question String
+}
+
+type QuizQuestionOption {
+  correct Boolean
+  option  String
+}
+
+model Quiz {
+  id        String         @id @default(auto()) @map("_id") @db.ObjectId
+  admin     User           @relation(fields: [adminId], references: [id])
+  adminId   String         @db.ObjectId
+  questions QuizQuestion[]
+  quizTitle String         @unique
+}
+
+model User {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  email    String @unique
+  mobile   String @unique
+  password String
+  username String @unique
+  quizzes  Quiz[]
+}
