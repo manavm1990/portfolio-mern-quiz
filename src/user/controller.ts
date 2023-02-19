@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import client from "../client.js";
 import { UserType } from "./user.js";
 import { generateToken } from "./utils.js";
+import config from "../config.js";
 
 export default {
   async create(newUser: UserType) {
@@ -20,7 +21,7 @@ export default {
         },
       })
       .catch(() => {
-        throw new Error("Invalid username or password.");
+        throw new Error(config.error.invalidLogin);
       });
 
     const isPasswordCorrect = await bcrypt.compare(
@@ -28,7 +29,7 @@ export default {
       foundUser.password
     );
 
-    if (!isPasswordCorrect) throw new Error("Invalid username or password.");
+    if (!isPasswordCorrect) throw new Error(config.error.invalidLogin);
 
     return generateToken(foundUser);
   },

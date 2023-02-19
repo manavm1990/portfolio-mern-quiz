@@ -19,4 +19,10 @@ export const ZUser = z.object({
   }),
 });
 
+export const ZUserLogin = z.object({
+  password: ZUser.shape.password,
+  username: ZUser.shape.username,
+});
+
 export type UserType = z.infer<typeof ZUser>;
+export type UserLoginType = z.infer<typeof ZUserLogin>;
