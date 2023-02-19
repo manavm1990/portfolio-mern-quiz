@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 import { z } from "zod";
-import { User } from "../user/user.js";
+import { ZUser } from "../user/user.js";
 
 const QuizQuestionOption = z.object({
   correct: z.boolean({
@@ -32,13 +32,12 @@ const QuizQuestion = z
     }
   );
 
-export const Quiz = z.object({
-  _id: z.instanceof(ObjectId),
-  admin: User,
+export const ZQuiz = z.object({
+  admin: ZUser,
   adminId: z.instanceof(ObjectId),
   quizTitle: z.string({
     required_error: "Quiz title must not be empty.",
   }),
 });
 
-export type Quiz = z.infer<typeof Quiz>;
+export type QuizType = z.infer<typeof ZQuiz>;
