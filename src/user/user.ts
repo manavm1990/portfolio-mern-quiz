@@ -14,7 +14,7 @@ export const ZUser = z.object({
     message:
       "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.",
   }),
-  username: z.string().length(3, {
+  username: z.string().trim().min(3, {
     message: "Username must be at least 3 characters long.",
   }),
 });
