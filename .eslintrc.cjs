@@ -7,7 +7,15 @@ module.exports = {
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
+    project: "./tsconfig.json",
     sourceType: "module",
   },
-  rules: {},
+  rules: {
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        checksVoidReturn: false,
+      },
+    ],
+  },
 };
