@@ -1,3 +1,13 @@
-import { add2Numbers } from "./lib.js";
+import express from "express";
+import config from "./config.js";
+import userRouter from "./user/routes.js";
 
-console.log(add2Numbers(1, 4));
+const app = express();
+
+app.use(express.json());
+
+app.use("/user", userRouter);
+
+app.listen(config.port, () => {
+  console.info(`Server: http://localhost:${config.port}`);
+});
