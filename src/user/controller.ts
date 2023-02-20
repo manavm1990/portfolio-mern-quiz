@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import client from "../client.js";
-import { UserType } from "./user.js";
-import { generateToken } from "./utils.js";
 import config from "../config.js";
+import { type UserType } from "./user.js";
+import { generateToken } from "./utils.js";
 
 export default {
   async create(newUser: UserType) {

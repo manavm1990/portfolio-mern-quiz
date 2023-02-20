@@ -1,15 +1,15 @@
+import { type User } from "@prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import config from "../config.js";
-import { UserType } from "./user.js";
-import { User } from "@prisma/client";
+import { type UserType } from "./user.js";
 
-async function hashPassword(password: string) {
+async function hashPassword(password: string): Promise<string> {
   const salt = await bcrypt.genSalt(config.saltRounds);
-  return bcrypt.hash(password, salt);
+  return await bcrypt.hash(password, salt);
 }
 
-export const generateToken = (user: User) => {
+export const generateToken = (user: User): string => {
   const payload = {
     id: user.id,
     username: user.username,
@@ -20,12 +20,12 @@ export const generateToken = (user: User) => {
   });
 };
 
-export async function prepareUser(user: UserType) {
+export async function prepareUser(user: UserType): Promise<UserType> {
   const ret = { ...user };
 
   ret.username = ret.username?.trim().toLowerCase();
 
-  if (ret.password) ret.password = await hashPassword(ret.password);
+  if (ret.password !== "") ret.password = await hashPassword(ret.password);
 
   return ret;
 }

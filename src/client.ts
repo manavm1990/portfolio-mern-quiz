@@ -12,7 +12,7 @@ prisma.$use(async (params, next) => {
   )
     ret.args.data = await prepareUser(ret.args.data);
 
-  return next(ret);
+  return await next(ret);
 });
 
 export default prisma;
