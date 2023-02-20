@@ -15,19 +15,19 @@ let saltRounds = 10;
 const sameSite: CookieOptions["sameSite"] = "strict";
 const secret = process.env.JWT_SECRET;
 
-if (process.env.COOKIE_MAX_AGE !== null) {
+if (process.env.COOKIE_MAX_AGE != null) {
   maxAge = Number(process.env.COOKIE_MAX_AGE);
 }
 
-if (process.env.PORT !== null) {
+if (process.env.PORT != null) {
   port = Number(process.env.PORT);
 }
 
-if (process.env.saltRounds !== null) {
+if (process.env.saltRounds != null) {
   saltRounds = Number(process.env.saltRounds);
 }
 
-if (expiresIn === null) {
+if (expiresIn == null) {
   expiresIn = "1h";
 }
 
